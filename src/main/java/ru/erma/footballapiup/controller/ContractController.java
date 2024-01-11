@@ -25,4 +25,9 @@ public class ContractController {
     public ResponseEntity<ContractDto> getTeamById(@PathVariable Long id){
         return ResponseEntity.ok(contractService.findContractById(id));
     }
+
+    @GetMapping("/expired")
+    public ResponseEntity<List<ContractDto>> getContractsExpiringThisYear(){
+        return ResponseEntity.ok(contractService.findContractsExpiringThisYear());
+    }
 }

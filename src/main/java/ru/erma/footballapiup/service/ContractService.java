@@ -8,6 +8,7 @@ import ru.erma.footballapiup.model.Contract;
 import ru.erma.footballapiup.repository.ContractRepository;
 import ru.erma.footballapiup.util.EntityNotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,5 +29,12 @@ public class ContractService {
         return contractRepository.findById(id)
                 .map(mapper::toContractDto)
                 .orElseThrow(()-> new EntityNotFoundException("Contract",id));
+    }
+    public List<ContractDto> findContractsExpiringThisYear(){
+        int currentYear = LocalDate.now().getYear();
+        List<Contract> contracts = contractRepository.findContractsExpiringThisYear(currentYear);
+        return contracts.stream()
+                .map(mapper::toContractDto)
+                .collect(Collectors.toList());
     }
 }

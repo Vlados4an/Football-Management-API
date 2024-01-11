@@ -34,4 +34,10 @@ public class StatisticsController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteStatisticsById(@PathVariable Long id){
+        statisticsService.deleteStatistics(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

@@ -39,4 +39,8 @@ public class StatisticsService {
         statisticsRepository.save(statisticsToUpdate);
     }
 
+    public void deleteStatistics(Long id){
+        statisticsRepository.deleteById(id);
+    }
+
 }

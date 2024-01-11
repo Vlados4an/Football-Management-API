@@ -16,6 +16,7 @@ import ru.erma.footballapiup.repository.StatisticsRepository;
 import ru.erma.footballapiup.util.EntityNotFoundException;
 import ru.erma.footballapiup.util.PlayerNotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,14 @@ public class PlayerService {
         return playerRepository.findByName(name)
                 .map(mapper::toPlayerDto)
                 .orElseThrow(()-> new PlayerNotFoundException(name));
+    }
+
+    public List<PlayerDto> findPlayersWithExpiredContract() {
+        int currentYear = LocalDate.now().getYear();
+        List<Player> playersWithExpiredContracts = playerRepository.findPlayersWithExpiredContracts(currentYear);
+        return playersWithExpiredContracts.stream()
+                .map(mapper::toPlayerDto)
+                .collect(Collectors.toList());
     }
 
     public void addStatisticsToPlayer(Long playerId, Long statisticsId){
