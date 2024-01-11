@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.erma.footballapiup.dto.PlayerDto;
 import ru.erma.footballapiup.dto.TeamDto;
 import ru.erma.footballapiup.service.TeamService;
 
@@ -22,6 +23,11 @@ public class TeamController {
     @GetMapping("/{id}")
     public ResponseEntity<TeamDto> getTeamById(@PathVariable Long id){
         return ResponseEntity.ok(teamService.findTeamById(id));
+    }
+
+    @GetMapping("/players/{id}")
+    public ResponseEntity<List<PlayerDto>> getPlayersOfTeam(@PathVariable Long id){
+        return ResponseEntity.ok(teamService.findPlayersByTeam(id));
     }
 
     @GetMapping("/name/{name}")

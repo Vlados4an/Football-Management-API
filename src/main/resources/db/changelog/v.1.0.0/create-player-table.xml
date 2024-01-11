@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet id="002-create-player-table" author="Vlados4an">
+        <createTable tableName="player">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nationality" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shirt_number" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="team_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="contract_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="statistics_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_player_team"
+                                 baseTableName="player" baseColumnNames="team_id"
+                                 referencedTableName="team" referencedColumnNames="id"/>
+        <addForeignKeyConstraint constraintName="fk_player_contract"
+                                 baseTableName="player" baseColumnNames="contract_id"
+                                 referencedTableName="contract" referencedColumnNames="id"/>
+        <addForeignKeyConstraint constraintName="fk_player_statistics"
+                                 baseTableName="player" baseColumnNames="statistics_id"
+                                 referencedTableName="statistics" referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
