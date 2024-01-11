@@ -38,6 +38,14 @@ public class TeamService {
                 .orElseThrow(()-> new TeamNotFoundException(name));
     }
 
+    public List<PlayerDto> findPlayersByTeam(Long id){
+        Team team = teamRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("Team",id));
+        return team.getFootballPlayers().stream()
+                .map(mapper::toPlayerDto)
+                .collect(Collectors.toList());
+    }
+
     public void updateTeam(TeamDto teamDto, Long id){
         Team teamToUpdate = teamRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("Team",id));
