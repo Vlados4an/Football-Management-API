@@ -1,0 +1,11 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: vlados4an
+      POSTGRES_PASSWORD: 12345603
+      POSTGRES_DB: FootballApiUp
+    ports:
+      - "5433:5432"
+    restart: unless-stopped

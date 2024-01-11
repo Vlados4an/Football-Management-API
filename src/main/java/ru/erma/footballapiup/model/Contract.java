@@ -1,6 +1,5 @@
 package ru.erma.footballapiup.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
