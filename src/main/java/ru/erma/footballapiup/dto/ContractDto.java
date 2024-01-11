@@ -1,22 +1,31 @@
 package ru.erma.footballapiup.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.erma.footballapiup.serialisation.CustomLocalDateDeserializer;
+import ru.erma.footballapiup.serialisation.CustomLocalDateSerializer;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContractDto {
-    @NotBlank(message = "Start should not be blank")
-    @Pattern(regexp = "^\\d{4}-\\d{2}$", message = "Start should be in the format 'YYYY-MM'")
-    private String start;
+    @JsonFormat(pattern = "yyyy-MM")
+    @JsonSerialize(using = CustomLocalDateSerializer.class)
+    @JsonDeserialize(using = CustomLocalDateDeserializer.class)
+    private LocalDate start;
 
-    @NotBlank(message = "Until should not be blank")
-    @Pattern(regexp = "^\\d{4}-\\d{2}$", message = "Until should be in the format 'YYYY-MM'")
-    private String until;
+    @JsonFormat(pattern = "yyyy-MM")
+    @JsonSerialize(using = CustomLocalDateSerializer.class)
+    @JsonDeserialize(using = CustomLocalDateDeserializer.class)
+    private LocalDate until;
 }

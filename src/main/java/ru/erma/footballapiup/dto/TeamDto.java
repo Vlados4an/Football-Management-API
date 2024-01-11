@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.erma.footballapiup.validators.PastOrPresentYear;
 
 
 @Getter
@@ -29,7 +28,6 @@ public class TeamDto {
 
     @NotNull(message = "Founded cannot be null")
     @Positive(message = "Founded should be positive integer")
-    @PastOrPresentYear(message = "Founded should be the past or present year")
     private int founded;
 
     @NotBlank(message = "ClubColors should not be blank")

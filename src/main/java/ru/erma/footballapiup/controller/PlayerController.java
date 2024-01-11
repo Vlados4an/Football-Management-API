@@ -31,6 +31,11 @@ public class PlayerController {
         return ResponseEntity.ok(playerService.findPlayerByName(name));
     }
 
+    @GetMapping("/expired")
+    public ResponseEntity<List<PlayerDto>> getPlayersWithExpiredContract(){
+        return ResponseEntity.ok(playerService.findPlayersWithExpiredContract());
+    }
+
     @PutMapping("/{playerId}/statistics/{statisticsId}")
     public ResponseEntity<HttpStatus> addStatisticsToPlayer(@PathVariable Long playerId, @PathVariable Long statisticsId){
         playerService.addStatisticsToPlayer(playerId, statisticsId);
