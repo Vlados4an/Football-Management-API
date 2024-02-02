@@ -56,5 +56,5 @@ The project includes unit tests. Run `mvn test` to execute the tests.
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Contact me:
-ssvetlaa235@gmail.com
-telegram: @evlad03
+-ssvetlaa235@gmail.com
+-telegram: @evlad03
